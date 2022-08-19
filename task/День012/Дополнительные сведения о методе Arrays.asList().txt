@@ -1,0 +1,17 @@
+В ходе решения задач этого дня у вас могла возникнуть следующая ошибка: java.lang.UnsupportedOperationException
+
+Это означает, что где-то в коде вы использовали метод Arrays.asList() для создания нового списка с начальными элементами.
+Важная особенность списка, который получается в результате вызове метода Arrays.asList() заключается в том, что он неизменяемый (англ. immutable). Список, который мы создаем с помощью Arrays.asList(), содержит в себе заданные элементы, но не поддерживает добавление / удаление новых элементов. Если мы пытаемся добавить / удалить элемент, выбрасывается исключение java.lang.UnsupportedOperationException
+
+Пример:
+
+List<String> list = Arrays.asList("Audi", "BMW", "Lada", "Tesla");
+list.add("Mercedes"); // java.lang.UnsupportedOperationException
+
+
+Чтобы сделать неизменяемый список изменяемым (англ. mutable), необходимо создать новый обычный ArrayList, передав ему в качестве аргумента список, полученный от Arrays.asList().
+
+Пример:
+
+List<String> list = new ArrayList<>(Arrays.asList("Audi", "BMW", "Lada", "Tesla"));
+list.add("Mercedes"); // Все ок
